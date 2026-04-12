@@ -235,30 +235,61 @@ export default function HomePage() {
         </button>
       )}
 
-      {/* ── SCAN BUTTON ── */}
-      <label style={{
-        width: '100%', maxWidth: 360, padding: '16px 24px',
-        background: 'linear-gradient(135deg, #10B981, #059669)',
-        borderRadius: 20, cursor: 'pointer',
-        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12,
-        boxShadow: '0 4px 24px rgba(16, 185, 129, 0.3)',
-        position: 'relative', overflow: 'hidden',
+      {/* ── SCAN BUTTONS ── */}
+      <div style={{
+        display: 'flex', gap: 10, width: '100%', maxWidth: 360,
       }}>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          style={{
-            position: 'absolute', inset: 0,
-            width: '100%', height: '100%',
-            opacity: 0, cursor: 'pointer', zIndex: 2,
-          }}
-        />
-        <span style={{ fontSize: 24 }}>📷</span>
-        <span style={{ fontFamily: f1, fontSize: 16, fontWeight: 700, color: '#fff' }}>
-          Photo ou galerie
-        </span>
-      </label>
+        {/* Camera button */}
+        <label style={{
+          flex: 1, padding: '16px 12px',
+          background: 'linear-gradient(135deg, #10B981, #059669)',
+          borderRadius: 18, cursor: 'pointer',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+          boxShadow: '0 4px 24px rgba(16, 185, 129, 0.3)',
+          position: 'relative', overflow: 'hidden',
+        }}>
+          <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            onChange={handleFileChange}
+            style={{
+              position: 'absolute', inset: 0,
+              width: '100%', height: '100%',
+              opacity: 0, cursor: 'pointer', zIndex: 2,
+            }}
+          />
+          <span style={{ fontSize: 28 }}>📸</span>
+          <span style={{ fontFamily: f1, fontSize: 14, fontWeight: 700, color: '#fff' }}>
+            Caméra
+          </span>
+        </label>
+
+        {/* Gallery button */}
+        <label style={{
+          flex: 1, padding: '16px 12px',
+          background: 'rgba(255,255,255,0.06)',
+          border: '1px solid rgba(52, 211, 153, 0.25)',
+          borderRadius: 18, cursor: 'pointer',
+          display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+          position: 'relative', overflow: 'hidden',
+        }}>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            style={{
+              position: 'absolute', inset: 0,
+              width: '100%', height: '100%',
+              opacity: 0, cursor: 'pointer', zIndex: 2,
+            }}
+          />
+          <span style={{ fontSize: 28 }}>🖼️</span>
+          <span style={{ fontFamily: f1, fontSize: 14, fontWeight: 700, color: '#A7F3D0' }}>
+            Galerie
+          </span>
+        </label>
+      </div>
 
       {/* ── SEPARATOR ── */}
       <div style={{

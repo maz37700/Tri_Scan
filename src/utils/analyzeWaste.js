@@ -31,25 +31,13 @@ Si l'image ne montre pas de déchet identifiable, retourne :
  * @param {string} apiKey - Anthropic API key (stored locally)
  * @returns {Promise<Object>} Analysis result
  */
-export async function analyzeWasteImage(imageDataUrl, apiKey) {
+export async function analyzeWasteImage(imageDataUrl) {
   const base64 = imageDataUrl.split(',')[1];
   const mediaType = imageDataUrl.split(';')[0].split(':')[1] || 'image/jpeg';
 
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-
-  // If user provides their own API key (for self-hosted version)
-  if (apiKey) {
-    headers['x-api-key'] = apiKey;
-    headers['anthropic-version'] = '2023-06-01';
-    // When self-hosted, also add CORS header handling
-    headers['anthropic-dangerous-direct-browser-access'] = 'true';
-  }
-
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
+  const response = await fetch('/api/analyze', {
     method: 'POST',
-    headers,
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: 'claude-sonnet-4-20250514',
       max_tokens: 1000,
